@@ -1,18 +1,25 @@
 language: android
+env:
+ global:
+    - ANDROID_API_LEVEL=29
 android:
+ licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
  components:
     - tools
     - platform-tools
     # The BuildTools version used by your project
-    - build-tools-28.0.3
-    - android-28
+    - build-tools-29.0.3
+    - android-$ANDROID_API_LEVEL
     - android-21
     - add-on
     - extra
     - extra-google-googleplayservices
     - extra-google-m2repository
     - extra-android-m2repository
-    - addon-google_apis-google-28
+    - addon-google_apis-google-$ANDROID_API_LEVEL
     - sys-img-armeabi-v7a-android-21
-before_install:
-  - yes | sdkmanager "platforms;android-28"
+script:
+    - ./gradlew build check
