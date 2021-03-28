@@ -1,7 +1,7 @@
 language: android
 env:
  global:
-    - ANDROID_API_LEVEL=29
+    - ANDROID_API_LEVEL=30
 android:
  licenses:
     - 'android-sdk-preview-license-.+'
@@ -11,7 +11,7 @@ android:
     - tools
     - platform-tools
     # The BuildTools version used by your project
-    - build-tools-29.0.3
+    - build-tools-30.0.3
     - android-$ANDROID_API_LEVEL
     - android-21
     - add-on
