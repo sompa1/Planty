@@ -21,5 +21,7 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
     - sys-img-armeabi-v7a-android-21
+before_install:
+  - yes | sdkmanager "platforms;android-$ANDROID_API_LEVEL"
 script:
     - ./gradlew build check
