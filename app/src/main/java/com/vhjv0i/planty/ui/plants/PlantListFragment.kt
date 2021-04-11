@@ -9,9 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.vhjv0i.planty.R
 import com.vhjv0i.planty.ui.about.AboutViewModel
+import javax.inject.Inject
 
 class PlantListFragment : Fragment() {
 
+    @Inject
+    lateinit var plantListPresenter: PlantListPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
