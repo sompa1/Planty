@@ -14,7 +14,7 @@ import javax.inject.Inject
 class PlantListFragment : Fragment() {
 
     @Inject
-    lateinit var plantListPresenter: PlantListPresenter
+    lateinit var plantsPresenter: PlantsPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
