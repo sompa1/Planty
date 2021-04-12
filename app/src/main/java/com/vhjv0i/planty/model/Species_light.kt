@@ -9,7 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-package io.swagger.client.models
+package com.vhjv0i.planty.model
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * The symonyms scientific names
@@ -27,40 +33,67 @@ package io.swagger.client.models
  * @param genusId The id of the species genus
  * @param genus The scientific name of the species genus
  * @param imageUrl A main image url of the species
- * @param links 
- * @param synonyms The symonyms scientific names
  */
+@Entity(tableName = "plantitem")
 data class SpeciesLight (
 
     /* An unique identifier */
-    val id: kotlin.Int,
+        @PrimaryKey(autoGenerate = true)
+        @SerializedName("id")
+        var id: kotlin.Int,
     /* The usual common name, in english, of the species (if any). */
-    val commonName: kotlin.String? = null,
+        @ColumnInfo(name = "common_name")
+        @SerializedName("common_name")
+        var commonName: kotlin.String? = null,
     /* An unique human-readable identifier (if you can, prefer to use this over id) */
-    val slug: kotlin.String,
+        @ColumnInfo(name = "slug")
+        @SerializedName("slug")
+        var slug: kotlin.String,
     /* The scientific name follows the [Binomial nomenclature](https://en.wikipedia.org/wiki/Binomial_nomenclature), and represents its genus and its species within the genus, resulting in a single worldwide name for each organism. The scientific name of an infraspecific taxons (ranks below species, such as subspecies, forms, varieties...) is a combination of the name of a species and an infraspecific epithet. A connecting term is used to denote the rank. [See IAPT recommendation](https://www.iapt-taxon.org/nomen/pages/main/art_24.html) */
-    val scientificName: kotlin.String,
+        @ColumnInfo(name = "scientific_name")
+        @SerializedName("scientific_name")
+        var scientificName: kotlin.String,
     /* The first publication year of a valid name of this species. [See author citation](https://en.wikipedia.org/wiki/Author_citation_(botany)) */
-    val year: kotlin.Int? = null,
+        @ColumnInfo(name = "year")
+        @SerializedName("year")
+        var year: kotlin.Int? = null,
     /* The first publication of a valid name of this species. [See author citation](https://en.wikipedia.org/wiki/Author_citation_(botany)) */
-    val bibliography: kotlin.String? = null,
+        @ColumnInfo(name = "bibliography")
+        @SerializedName("bibliography")
+        var bibliography: kotlin.String? = null,
     /* The author(s) of the first publication of a valid name of this species. [See author citation](https://en.wikipedia.org/wiki/Author_citation_(botany)) */
-    val author: kotlin.String? = null,
+        @ColumnInfo(name = "author")
+        @SerializedName("author")
+        var author: kotlin.String? = null,
     /* The acceptance status of this species by IPNI */
-    val status: SpeciesLight.Status,
+        @ColumnInfo(name = "status")
+        @SerializedName("status")
+        var status: SpeciesLight.Status,
     /* The [taxonomic rank](https://en.wikipedia.org/wiki/Taxonomic_rank) of the species */
-    val rank: SpeciesLight.Rank,
+        @ColumnInfo(name = "rank")
+        @SerializedName("rank")
+        var rank: SpeciesLight.Rank,
     /* The common name (in english) of the species family */
-    val familyCommonName: kotlin.String? = null,
+        @ColumnInfo(name = "family_common_name")
+        @SerializedName("family_common_name")
+        var familyCommonName: kotlin.String? = null,
     /* The scientific name of the species family */
-    val family: kotlin.String,
+        @ColumnInfo(name = "family")
+        @SerializedName("family")
+        var family: kotlin.String,
     /* The id of the species genus */
-    val genusId: kotlin.Int,
+        @ColumnInfo(name = "genus_id")
+        @SerializedName("genus_id")
+        var genusId: kotlin.Int,
     /* The scientific name of the species genus */
-    val genus: kotlin.String,
+        @ColumnInfo(name = "genus")
+        @SerializedName("genus")
+        var genus: kotlin.String,
     /* A main image url of the species */
-    val imageUrl: kotlin.String? = null,
-) {
+        @ColumnInfo(name = "image_url")
+        @SerializedName("image_url")
+        var imageUrl: kotlin.String? = null,
+): Serializable {
     /**
     * The acceptance status of this species by IPNI
     * Values: ACCEPTED,UNKNOWN

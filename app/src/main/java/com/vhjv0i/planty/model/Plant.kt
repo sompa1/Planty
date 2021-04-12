@@ -9,7 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-package io.swagger.client.models
+package com.vhjv0i.planty.model
 
 /**
  * 
@@ -29,19 +29,35 @@ package io.swagger.client.models
  * @param sources 
  * @param links 
  */
-data class Plant (
 
-    val id: kotlin.Int,
-    val commonName: kotlin.String? = null,
-    val slug: kotlin.String,
-    val scientificName: kotlin.String,
-    val year: kotlin.Int? = null,
-    val bibliography: kotlin.String? = null,
-    val author: kotlin.String? = null,
-    val familyCommonName: kotlin.String? = null,
-    val genusId: kotlin.Int? = null,
-    val mainSpeciesId: kotlin.Int? = null,
-    val vegetable: kotlin.Boolean? = null,
-    val observations: kotlin.String? = null
+import com.google.gson.annotations.SerializedName
+
+data class Plant (
+        @SerializedName("id")
+        val id: kotlin.Int,
+        @SerializedName("common_name")
+        val commonName: kotlin.String? = null,
+        @SerializedName("slug")
+        val slug: kotlin.String,
+        @SerializedName("scientific_name")
+        val scientificName: kotlin.String,
+        @SerializedName("image_url")
+        val imageUrl: kotlin.String,
+        @SerializedName("year")
+        val year: kotlin.Int? = null,
+        @SerializedName("bibliography")
+        val bibliography: kotlin.String? = null,
+        @SerializedName("author")
+        val author: kotlin.String? = null,
+        @SerializedName("family_common_name")
+        val familyCommonName: kotlin.String? = null,
+        @SerializedName("genus_id")
+        val genusId: kotlin.Int? = null,
+        @SerializedName("main_species_id")
+        val mainSpeciesId: kotlin.Int? = null,
+        @SerializedName("vegetable")
+        val vegetable: kotlin.Boolean? = null,
+        @SerializedName("observations")
+        val observations: kotlin.String? = null
 ) {
 }

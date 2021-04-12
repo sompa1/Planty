@@ -2,8 +2,8 @@ package com.vhjv0i.planty.ui.plants
 
 import com.vhjv0i.planty.interactor.plants.PlantsInteractor
 import com.vhjv0i.planty.interactor.plants.event.GetPlantsEvent
+import com.vhjv0i.planty.model.SpeciesLight
 import com.vhjv0i.planty.ui.Presenter
-import io.swagger.client.models.SpeciesLight
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

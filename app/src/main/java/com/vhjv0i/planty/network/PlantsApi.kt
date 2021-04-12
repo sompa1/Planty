@@ -1,7 +1,7 @@
 package com.vhjv0i.planty.network
 
-import io.swagger.client.models.Plant
-import io.swagger.client.models.SpeciesLight
+import com.vhjv0i.planty.model.Plant
+import com.vhjv0i.planty.model.SpeciesLight
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

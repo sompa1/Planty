@@ -1,6 +1,7 @@
 package com.vhjv0i.planty.ui.plants
 
-import io.swagger.client.models.SpeciesLight
+import com.vhjv0i.planty.model.SpeciesLight
+
 
 interface PlantListScreen {
     fun showPlants(plants: List<SpeciesLight>?)
