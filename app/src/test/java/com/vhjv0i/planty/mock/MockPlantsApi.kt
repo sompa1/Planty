@@ -4,6 +4,7 @@ import com.vhjv0i.planty.model.Plant
 import com.vhjv0i.planty.model.SpeciesLight
 import com.vhjv0i.planty.network.PlantsApi
 import okhttp3.Request
+import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,6 +50,10 @@ class MockPlantsApi: PlantsApi {
 
             override fun request(): Request? {
                 return null
+            }
+
+            override fun timeout(): Timeout {
+                TODO("Not yet implemented")
             }
         }
 
