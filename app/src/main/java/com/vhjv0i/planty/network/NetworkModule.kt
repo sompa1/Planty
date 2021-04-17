@@ -20,7 +20,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providePlantsApi(retrofitBuilder: Retrofit.Builder): PlantsApi? {
-        return retrofitBuilder.baseUrl(NetworkConfig.API_ENDPOINT_ADDRESS).build()
+        return retrofitBuilder.baseUrl(NetworkConfig.API_ENDPOINT_ADDRESS).addConverterFactory(GsonConverterFactory.create()).build()
             .create(PlantsApi::class.java)
     }
 }
