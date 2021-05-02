@@ -62,7 +62,47 @@ class MockPlantsApi: PlantsApi {
     }
 
     override fun getPlantDetails(apiKey: String, id: String): Call<PlantBase> {
-        TODO("Not yet implemented")
+        val plant = Plant(1,"Evergreen oak", "quercus-rotundifolia", "Quercus rotundifolia",
+            "https://bs.plantnet.org/image/o/1a03948baf0300da25558c2448f086d39b41ca30", 1785, "Encycl. 1: 723 (1785)", "Lam.", "Beech family", 1, 1, false, "SW. Europe, N. Africa")
+
+        val plantBase = PlantBase(plant)
+
+        val call = object : Call<PlantBase> {
+            @Throws(IOException::class)
+            override fun execute(): Response<PlantBase> {
+                return Response.success(plantBase)
+            }
+
+            override fun enqueue(callback: Callback<PlantBase>) {
+
+            }
+
+            override fun isExecuted(): Boolean {
+                return false
+            }
+
+            override fun cancel() {
+
+            }
+
+            override fun isCanceled(): Boolean {
+                return false
+            }
+
+            override fun clone(): Call<PlantBase> {
+                return this
+            }
+
+            override fun request(): Request? {
+                return null
+            }
+
+            override fun timeout(): Timeout {
+                TODO("Not yet implemented")
+            }
+        }
+
+        return call
     }
 
 }
