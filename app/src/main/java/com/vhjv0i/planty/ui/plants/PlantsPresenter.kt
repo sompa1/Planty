@@ -13,7 +13,9 @@ import javax.inject.Inject
 class PlantsPresenter @Inject constructor(private val executor: Executor, private val plantsInteractor: PlantsInteractor) : Presenter<PlantListScreen>(){
     override fun attachScreen(screen: PlantListScreen) {
         super.attachScreen(screen)
-        EventBus.getDefault().register(this)
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     override fun detachScreen() {
