@@ -1,5 +1,6 @@
 package com.vhjv0i.planty.ui.about
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vhjv0i.planty.R
+import com.vhjv0i.planty.injector
+import com.vhjv0i.planty.ui.plants.PlantDetailsPresenter
+import javax.inject.Inject
 
 class AboutFragment : Fragment() {
 
@@ -27,5 +31,10 @@ class AboutFragment : Fragment() {
             textView.text = it
         })
         return root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        injector.inject(this)
     }
 }

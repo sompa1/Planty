@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">Planty</string>
     <string name="title_list">Plant list</string>
+    <string name="plantSciName">Scientific Name</string>
+    <string name="plantGenus">Genus</string>
+    <string name="plantObservations">Observations</string>
+    <string name="plantFamily">Family</string>
+    <string name="plantDiscovery">Year of discovery</string>
+    <string name="plantBiblio">Bibliography</string>
+    <string name="plantCommonName">Plant Common Name</string>
+    <string name="imageContent">Plant image</string>
     <string name="title_about">About</string>
+    <string name="search_plant_name">About</string>
+    <string name="title_item_details">Planty</string>
+
 </resources>
