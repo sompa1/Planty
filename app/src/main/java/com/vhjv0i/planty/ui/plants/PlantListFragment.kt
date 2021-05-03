@@ -2,14 +2,18 @@ package com.vhjv0i.planty.ui.plants
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SortedList
+import androidx.recyclerview.widget.SortedListAdapterCallback
+import com.vhjv0i.planty.MainActivity
 import com.vhjv0i.planty.R
 import com.vhjv0i.planty.injector
 import com.vhjv0i.planty.model.SpeciesLight
@@ -20,9 +24,7 @@ class PlantListFragment : Fragment(), PlantListScreen {
 
     private var plantList: MutableList<SpeciesLight> = mutableListOf()
     private var plantsAdapter: PlantsAdapter? = null
-    //private val plant by lazy { requireArguments().getString(KEY_PLANT)!! }
-    //private var selectedPlant: String? = null
-    //private lateinit var listViewModel: PlantListViewModel
+    var plants: List<SpeciesLight>? = null //TODO
 
     @Inject
     lateinit var plantsPresenter: PlantsPresenter
@@ -47,9 +49,8 @@ class PlantListFragment : Fragment(), PlantListScreen {
         val llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerViewPlants.setLayoutManager(llm)
-
         plantList = ArrayList()
-        plantsAdapter = PlantsAdapter(requireContext(), plantList)
+        plantsAdapter = PlantsAdapter(requireContext(), plantList as ArrayList<SpeciesLight>)
         recyclerViewPlants.adapter = plantsAdapter
 
         recyclerViewPlants.addOnItemTouchListener(
@@ -60,11 +61,28 @@ class PlantListFragment : Fragment(), PlantListScreen {
                         val intent = Intent(activity, PlantDetailsActivity::class.java)
                         val b = Bundle()
                         b.putInt("id", plantsAdapter!!.getItem(position)!!.id)
+                        b.putString("name", plantsAdapter!!.getItem(position)!!.commonName)
                         intent.putExtras(b) //Put your id to your next Intent
                         startActivity(intent)
                     }
                 })
         )
+
+        val nameSearch = view.findViewById<SearchView>(R.id.name_search)
+        val searchIcon = nameSearch.findViewById<ImageView>(R.id.search_mag_icon)
+        searchIcon.setColorFilter(Color.WHITE)
+        nameSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                plantsAdapter!!.filter.filter(newText)
+                return false
+            }
+
+        })
+
         return view
 
     }
@@ -75,6 +93,30 @@ class PlantListFragment : Fragment(), PlantListScreen {
         plantsAdapter!!.notifyDataSetChanged()
     }
 
+    /*
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val inflater: MenuInflater = inflater
+        inflater.inflate(R.menu.main_menu, menu)
+        val searchItem: MenuItem = menu.findItem(R.id.action_search)
+        val searchView = SearchView(((context as PlantListActivity).supportActionBar?.themedContext ?: context)!!)
+        menu.findItem(R.id.action_search).apply {
+            setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW or MenuItem.SHOW_AS_ACTION_IF_ROOM)
+            actionView = searchView
+        }
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // task HERE
+                return false
+            }
+
+        })
+    }
+    */
 
     /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -99,7 +141,7 @@ class PlantListFragment : Fragment(), PlantListScreen {
 
     override fun onResume() {
         super.onResume()
-        plantsPresenter.refreshPlants("") //TODO: common_name
+        plantsPresenter.refreshPlants("")
     }
 
     companion object {

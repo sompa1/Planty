@@ -2,6 +2,38 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id "org.jetbrains.kotlin.kapt"
+    id 'jacoco'
+}
+
+
+apply plugin: 'jacoco'
+jacoco {
+    toolVersion "0.8.1"
+}
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+task jacocoTestReport(type:JacocoReport, dependsOn: ["testDebug", "createDebugCoverageReport"]) {
+    group = "Reporting"
+
+    description = "Generate Jacoco coverage reports"
+
+    // exclude auto-generated classes and tests
+    def fileFilter = ['**/R.class', '**/R$*.class',
+                      '**/BuildConfig.*', '**/Manifest*.*',
+                      'android/**/*.*']
+    def debugTree = fileTree(dir:
+            "${project.buildDir}/intermediates/classes/debug",
+            excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+
+
+    reports {
+        xml.enabled = true
+        csv.enabled = false
+        html.enabled = true
+    }
 }
 
 android {
@@ -19,16 +51,32 @@ android {
     }
 
     testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        animationsDisabled true
         unitTests {
             includeAndroidResources = true
         }
     }
-
+//    jacocoTestReport {
+//        dependsOn test // tests are required to run before generating the report
+//        reports {
+//            xml.enabled false
+//            csv.enabled false
+//            html.destination layout.buildDirectory.dir('jacocoHtml').get().asFile
+//        }
+//    }
+    jacoco {
+        version = '0.8.1'
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

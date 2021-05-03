@@ -39,8 +39,18 @@ class PlantsTest {
     }
 
     @Test
-    fun testArtists() {
+    fun testPlantsWithParam() {
         query = "Evergreen oak"
+        plantsPresenter.refreshPlants(query)
+        Shadows.shadowOf(Looper.getMainLooper()).idle()
+        val list = argumentCaptor<MutableList<SpeciesLight>>()
+        Mockito.verify(plantListScreen).showPlants(list.capture())
+        assert(list.value.size > 0)
+    }
+
+    @Test
+    fun testPlants() {
+        query = ""
         plantsPresenter.refreshPlants(query)
         Shadows.shadowOf(Looper.getMainLooper()).idle()
         val list = argumentCaptor<MutableList<SpeciesLight>>()
