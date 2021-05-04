@@ -30,4 +30,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/crashButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crash!!!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_about" />
 </androidx.constraintlayout.widget.ConstraintLayout>
